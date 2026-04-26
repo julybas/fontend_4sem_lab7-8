@@ -33,7 +33,7 @@ const InventoryForm = ({
           type="text"
           value={name}
           onChange={(e) => setName(e.target.value)}
-          style={{ width: "100%", padding: "8px" }}
+          className="form-input"
           required
         />
       </div>
@@ -44,7 +44,7 @@ const InventoryForm = ({
         <textarea
           value={description}
           onChange={(e) => setDescription(e.target.value)}
-          style={{ width: "100%", padding: "8px", minHeight: "80px" }}
+          className="form-input form-textarea"
         />
       </div>
 
@@ -61,17 +61,7 @@ const InventoryForm = ({
         </div>
       )}
 
-      <button
-        type="submit"
-        style={{
-          padding: "10px",
-          background: "#007bff",
-          color: "white",
-          border: "none",
-          borderRadius: "4px",
-          cursor: "pointer",
-        }}
-      >
+      <button type="submit" className="btn btn-submit">
         {buttonText}
       </button>
     </form>

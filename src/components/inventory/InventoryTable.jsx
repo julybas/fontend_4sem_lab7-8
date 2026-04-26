@@ -21,10 +21,7 @@ const InventoryTable = ({ items, onDelete }) => {
 
   return (
     <>
-      <table
-        border="1"
-        style={{ width: "100%", marginTop: "20px", borderCollapse: "collapse" }}
-      >
+      <table className="inventory-table">
         <thead>
           <tr>
             <th>Фото</th>
@@ -36,19 +33,26 @@ const InventoryTable = ({ items, onDelete }) => {
         <tbody>
           {items.map((item) => (
             <tr key={item.id}>
-              <td style={{ textAlign: "center" }}>
+              <td className="td-center">
                 <img
                   src={item.photo_url}
                   alt={item.inventory_name}
-                  style={{ width: "50px", height: "50px", objectFit: "cover" }}
+                  className="item-img"
                 />
               </td>
               <td>{item.inventory_name}</td>
               <td>{item.description}</td>
               <td>
-                <Link to={`/admin/details/${item.id}`}>Переглянути</Link> |{" "}
-                <Link to={`/admin/edit/${item.id}`}>Редагувати</Link> |{" "}
-                <button onClick={() => handleDeleteClick(item.id)}>
+                <Link to={`/admin/details/${item.id}`} className="link-view">
+                  Переглянути
+                </Link>{" "}
+                <Link to={`/admin/edit/${item.id}`} className="link-edit">
+                  Редагувати
+                </Link>{" "}
+                <button
+                  onClick={() => handleDeleteClick(item.id)}
+                  className="btn btn-delete"
+                >
                   Видалити
                 </button>
               </td>

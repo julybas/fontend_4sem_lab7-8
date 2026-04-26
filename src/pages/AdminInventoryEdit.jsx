@@ -32,53 +32,62 @@ const AdminInventoryEdit = () => {
   const handlePhotoUpdate = (e) => {
     e.preventDefault();
     if (!file) return alert("Виберіть файл!");
-
-    // В реальності тут був би FormData і запит до API
-    const fakePhotoUrl = URL.createObjectURL(file);
-    updateItemPhoto(id, fakePhotoUrl);
-    alert("Фото оновлено!");
-    navigate("/admin");
+    const reader = new FileReader();
+    reader.onloadend = () => {
+      const base64String = reader.result;
+      // Викликаємо функцію з контексту, передаючи Base64 рядок
+      updateItemPhoto(id, base64String);
+      alert("Фото успішно оновлено!");
+      navigate("/admin");
+    };
+    // Читаємо файл як DataURL (Base64)
+    reader.readAsDataURL(file);
   };
 
   return (
-    <div style={{ padding: "20px" }}>
+    <div className="edit-container">
       <h1>Редагування позиції</h1>
-      <button onClick={() => navigate("/admin")}>← Назад</button>
+      <button onClick={() => navigate("/admin")} className="btn btn-back">
+        ← Назад
+      </button>
 
-      <div
-        style={{ marginTop: "20px", border: "1px solid #ccc", padding: "15px" }}
-      >
+      <div className="edit-section">
         <h3>Текстова інформація</h3>
-        <form onSubmit={handleTextUpdate}>
+        <form onSubmit={handleTextUpdate} className="inventory-form">
           <input
             type="text"
             value={name}
             onChange={(e) => setName(e.target.value)}
             placeholder="Назва"
+            className="form-input"
           />
-          <br />
-          <br />
           <textarea
             value={description}
             onChange={(e) => setDescription(e.target.value)}
             placeholder="Опис"
+            className="form-input form-textarea"
           />
-          <br />
-          <button type="submit">Зберегти текст</button>
+          <button type="submit" className="btn btn-submit">
+            Зберегти текст
+          </button>
         </form>
       </div>
 
-      <div
-        style={{ marginTop: "20px", border: "1px solid #ccc", padding: "15px" }}
-      >
+      <div className="edit-section">
+        <br></br>
         <h3>Оновлення зображення</h3>
-        <form onSubmit={handlePhotoUpdate}>
-          <input
-            type="file"
-            accept="image/*"
-            onChange={(e) => setFile(e.target.files[0])}
-          />
-          <button type="submit">Оновити фото</button>
+        <form onSubmit={handlePhotoUpdate} className="inventory-form">
+          <div className="file-input-container">
+            <input
+              type="file"
+              accept="image/*"
+              onChange={(e) => setFile(e.target.files[0])}
+              className="form-input"
+            />
+          </div>
+          <button type="submit" className="btn btn-add">
+            Оновити фото
+          </button>
         </form>
       </div>
     </div>

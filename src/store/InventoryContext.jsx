@@ -4,30 +4,36 @@ const InventoryContext = createContext();
 
 // Тестові дані для перевірки
 const MOCK_DATA = [
-  // {
-  //   id: "1",
-  //   inventory_name: "Ноутбук Lenovo IdeaPad",
-  //   description: "Для навчання та програмування",
-  //   photo_url: "https://picsum.photos/200/300?random=1",
-  // },
-  // {
-  //   id: "2",
-  //   inventory_name: 'Монітор Dell 24"',
-  //   description: "Full HD, IPS матриця",
-  //   photo_url: "https://picsum.photos/200/300?random=2",
-  // },
+  {
+    id: "1",
+    inventory_name: "Ноутбук Lenovo IdeaPad",
+    description: "Для навчання та програмування",
+    photo_url: "https://picsum.photos/200/300?random=1",
+  },
+  {
+    id: "2",
+    inventory_name: 'Монітор Dell 24"',
+    description: "Full HD, IPS матриця",
+    photo_url: "https://picsum.photos/200/300?random=2",
+  },
 ];
 
 export const InventoryProvider = ({ children }) => {
-  const [items, setItems] = useState(MOCK_DATA);
+  const [items, setItems] = useState(() => {
+    const savedData = localStorage.getItem("inventory_items");
+    return savedData ? JSON.parse(savedData) : MOCK_DATA;
+  });
+
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  // Імітація завантаження даних
+  useEffect(() => {
+    localStorage.setItem("inventory_items", JSON.stringify(items));
+  }, [items]);
+
   const fetchInventory = async () => {
     setLoading(true);
     try {
-      // Імітуємо затримку мережі
       await new Promise((resolve) => setTimeout(resolve, 500));
       setError(null);
     } catch (err) {

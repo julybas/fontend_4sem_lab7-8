@@ -8,18 +8,33 @@ const AdminInventoryCreate = () => {
   const { addItem } = useInventory();
 
   const handleCreate = (data) => {
-    const fakePhotoUrl = data.file
-      ? URL.createObjectURL(data.file)
-      : "https://picsum.photos/150";
+    if (data.file) {
+      const reader = new FileReader();
 
-    addItem({
-      inventory_name: data.name,
-      description: data.description,
-      photo_url: fakePhotoUrl,
-    });
+      // Коли файл зчитано, він стає довгим рядком (Base64)
+      reader.onloadend = () => {
+        const base64String = reader.result;
 
-    alert("Товар створено!");
-    navigate("/admin");
+        addItem({
+          inventory_name: data.name,
+          description: data.description,
+          photo_url: base64String,
+        });
+
+        alert("Товар створено!");
+        navigate("/admin");
+      };
+
+      reader.readAsDataURL(data.file);
+    } else {
+      // Якщо файлу нема, ставимо заглушку
+      addItem({
+        inventory_name: data.name,
+        description: data.description,
+        photo_url: "https://picsum.photos/150",
+      });
+      navigate("/admin");
+    }
   };
 
   return (

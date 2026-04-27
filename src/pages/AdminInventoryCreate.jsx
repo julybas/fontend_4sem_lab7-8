@@ -40,10 +40,7 @@ const AdminInventoryCreate = () => {
   return (
     <div style={{ padding: "20px" }}>
       <h1>Додати нову позицію</h1>
-      <button
-        onClick={() => navigate("/admin")}
-        style={{ marginBottom: "20px" }}
-      >
+      <button onClick={() => navigate("/admin")} class="btn btn-back">
         ← Назад
       </button>
       <InventoryForm onSubmit={handleCreate} buttonText="Створити товар" />

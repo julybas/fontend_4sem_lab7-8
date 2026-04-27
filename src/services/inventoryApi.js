@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_URL = "http://localhost:5000"; // Заміни на реальний URL
+const API_URL = "http://localhost:5000";
 
 export const inventoryApi = {
   // Отримати весь список

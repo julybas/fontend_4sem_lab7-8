@@ -18,7 +18,7 @@ const ConfirmModal = ({ isOpen, onCancel, onConfirm, message }) => {
     >
       <div
         style={{
-          background: "white",
+          backgroundColor: "rgba(206, 206, 214, 0.95)",
           padding: "20px",
           borderRadius: "8px",
           minWidth: "300px",

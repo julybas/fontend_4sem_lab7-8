@@ -2,26 +2,10 @@ import { createContext, useState, useContext, useEffect } from "react";
 
 const InventoryContext = createContext();
 
-// Тестові дані для перевірки
-const MOCK_DATA = [
-  {
-    id: "1",
-    inventory_name: "Ноутбук Lenovo IdeaPad",
-    description: "Для навчання та програмування",
-    photo_url: "https://picsum.photos/200/300?random=1",
-  },
-  {
-    id: "2",
-    inventory_name: 'Монітор Dell 24"',
-    description: "Full HD, IPS матриця",
-    photo_url: "https://picsum.photos/200/300?random=2",
-  },
-];
-
 export const InventoryProvider = ({ children }) => {
   const [items, setItems] = useState(() => {
     const savedData = localStorage.getItem("inventory_items");
-    return savedData ? JSON.parse(savedData) : MOCK_DATA;
+    return JSON.parse(savedData);
   });
 
   const [loading, setLoading] = useState(false);

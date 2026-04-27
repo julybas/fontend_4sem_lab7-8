@@ -206,6 +206,7 @@ code {
 
 .form-textarea {
   min-height: 80px;
+  font-family: var(--sans);
 }
 
 /* СТИЛІ ДЛЯ РЕДАГУВАННЯ */
@@ -218,7 +219,7 @@ code {
   margin-top: 0;
   margin-bottom: 15px;
   font-size: 1.2rem;
-  color: #333;
+  color: #a8a6a6;
 }
 
 .btn-back {
@@ -290,3 +291,4 @@ code {
   border-radius: 6px;
   font-family: var(--mono);
 }
+  

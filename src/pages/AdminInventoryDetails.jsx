@@ -11,10 +11,7 @@ const AdminInventoryDetailsPage = () => {
 
   return (
     <div style={{ padding: "20px" }}>
-      <button
-        onClick={() => navigate("/admin")}
-        style={{ marginBottom: "20px", cursor: "pointer", padding: "8px 16px" }}
-      >
+      <button onClick={() => navigate("/admin")} class="btn btn-back">
         ← Назад до списку
       </button>
 
